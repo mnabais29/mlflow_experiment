@@ -1,0 +1,20 @@
+name: experiment
+
+conda_env: conda.yaml
+# Can have a docker_env instead of a conda_env, e.g.
+# docker_env:
+#    image:  mlflow-docker-example
+
+entry_points:
+  main:
+    parameters:
+      n_estimators: {type: int, default: 100}
+      max_depth: {type: float, default: 1}
+      max_features: {type: str, default=”auto”}
+      random_state: {type: int, default: 0}
+      n_jobs: {type: int, default: 1}
+    command: "python train.py --n_estimators {n_estimators} --max_depth {max_depth} --max_features {max_features} --random_state {random_state} --n_jobs {n_jobs}
+  random_search:
+    parameters:
+      data_file: path
+    command: "python search.py --n_estimators {n_estimators}"
