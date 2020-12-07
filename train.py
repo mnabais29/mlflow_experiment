@@ -16,7 +16,6 @@ import mlflow.sklearn
 def eval_metrics(actual,pred):
     f1 = f1_score(actual, pred, average='macro')
     acc = accuracy_score(actual,pred)
-    #roc_auc = roc_auc_score(actual, pred, multi_class="ovo", average="macro")
     return f1,acc
 
 if __name__ == "__main__":
@@ -56,10 +55,6 @@ if __name__ == "__main__":
 
     x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.25, random_state= random_state)
 
-    print(y)
-    print(y_test)
-    print(y_train)
-
     with mlflow.start_run():
 
         mlflow.sklearn.autolog()
@@ -74,8 +69,6 @@ if __name__ == "__main__":
 
         mlflow.log_metric("f1", f1)
         mlflow.log_metric("acc", acc)
-
-        #mlflow.log_metric("roc_auc", roc_auc)
 
         # Model registry does not work with file store
         #if tracking_url_type_store != "file":
