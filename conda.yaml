@@ -1,12 +1,12 @@
-name: base
+name: mlexp
 channels:
   - defaults
 dependencies:
   - matplotlib=3.0.3
   - numpy=1.16.2
   - pandas=0.24.2
-  - python=3.7.3
-  - scikit-learn=0.20.3
+  - python=3.8.0
+  - scikit-learn=0.23.2
   - scipy=1.2.1
   - seaborn=0.9.0
   - pip:
