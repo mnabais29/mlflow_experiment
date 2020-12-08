@@ -11,4 +11,3 @@ dependencies:
   - seaborn=0.9.0
   - pip:
     - mlflow==1.12.1
-
