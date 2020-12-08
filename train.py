@@ -26,18 +26,18 @@ if __name__ == "__main__":
     parser.add_argument('--n_estimators','-n_est', type=int)
     parser.add_argument('--max_depth','-md', type=int)
     parser.add_argument('--max_features','-mf', type=str)
-    parser.add_argument('--random_state','-rs', type=int)
-    parser.add_argument('--n_jobs','-nj', type=int)
+    #parser.add_argument('--random_state','-rs', type=int)
+    #parser.add_argument('--n_jobs','-nj', type=int)
 
     args = parser.parse_args()
 
     n_estimators = args.n_estimators
     max_depth = args.max_depth
     max_features = args.max_features
-    random_state = args.random_state
-    n_jobs = args.n_jobs
+    #random_state = args.random_state
+    #n_jobs = args.n_jobs
 
-    params = {"n_estimators": n_estimators, "max_depth": max_depth, "max_features": max_features, "random_state": random_state, "n_jobs": n_jobs}
+    params = {"n_estimators": n_estimators, "max_depth": max_depth, "max_features": max_features}
 
     # Read the wine-quality csv file from the URL
     #csv_url = (
@@ -53,12 +53,12 @@ if __name__ == "__main__":
     x = data.drop('quality', axis=1)
     y = data['quality']
 
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.25, random_state= random_state)
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.25, random_state= 42)
 
     with mlflow.start_run():
 
         mlflow.sklearn.autolog()
-        rfc = RandomForestClassifier(n_estimators = n_estimators, max_depth = max_depth, max_features = max_features, random_state = random_state, n_jobs = n_jobs)
+        rfc = RandomForestClassifier(n_estimators = n_estimators, max_depth = max_depth, max_features = max_features)
         rfc.fit(x_train,y_train)
 
         y_pred = rfc.predict(x_test)
