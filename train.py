@@ -63,7 +63,7 @@ if __name__ == "__main__":
 
         y_pred = rfc.predict(x_test)
 
-        print(classification_report(y_test, y_pred))
+        #print(classification_report(y_test, y_pred))
 
         (f1,acc) = eval_metrics(y_test,y_pred)
 
